@@ -57,7 +57,7 @@ Pada bagian ini saya menambahkan beberapa elemen ke YewChat.
 
 1. Memperbarui tampilan landing page yewchat.
 2. Menambahkan halaman tambahan (Inspiration Wall) sebagai another page dari aplikasi.
-3. Memperbarui tampilan chat room dan mencoba kirim pesan berbentuk URL GIF agar bisa ditampilkan di area chat.
+3. Memperbarui tampilan chat room
 
 ### Landing Page After
 
@@ -70,3 +70,44 @@ Pada bagian ini saya menambahkan beberapa elemen ke YewChat.
 ### Chat Room After
 
 ![Chat Room After](pics/chat-room-after.png)
+
+## Bonus
+
+### Mengganti WebSocket Server JavaScript dengan Rust
+
+Untuk bagian ini saya membuat folder baru `RustWebsocketServer` dan mengimplementasikan server WebSocket versi Rust agar bisa melayani web client dari Tutorial 3.
+
+#### Apa yang saya lakukan
+
+1. Membuat server Rust di `RustWebsocketServer` menggunakan `tokio` + `tokio-tungstenite`.
+2. Menyesuaikan protokol agar sama seperti Tutorial 3:
+   - client kirim JSON string `register` dan `message`
+   - server broadcast JSON string `users` dan `message`
+3. Tetap mengirim data lewat frame text WebSocket (bukan binary), jadi JSON tetap serialized/deserialized sebagai text message.
+4. Menjalankan uji koneksi dua client, lalu memverifikasi:
+   - update daftar users masuk ke semua client
+   - pesan dari 1 client dibroadcast ke semua client
+
+#### Kenapa ini berhasil
+
+Perubahan ini berhasil karena kontrak message antara client dan server dibuat identik dengan versi JavaScript.
+
+- `messageType: "register"` menyimpan username per koneksi.
+- `messageType: "message"` dibungkus ulang oleh server menjadi data:
+  - `from`
+  - `message`
+  - `time`
+- broadcast `users` dan `message` dikirim ke semua client aktif.
+
+### Terminal
+
+![Terminal with Rust Websocket](pics/rust-web-terminal.png)
+
+#### JavaScript vs Rust version
+
+Menurut saya:
+
+- versi javascript lebih cepat untuk prototyping dan lebih sederhana untuk setup awal.
+- versi rust lebih bagus untuk reliability dan maintainability jangka panjang, terutama untuk concurrency dan safety saat jumlah koneksi makin banyak.
+
+Jadi kalau tujuannya cepet jadi, JS enak. Kalau tujuannya server yang kuat dan scalable ya tentu lebih bagus Rust
