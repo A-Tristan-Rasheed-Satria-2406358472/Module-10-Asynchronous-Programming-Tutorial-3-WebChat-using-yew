@@ -1,0 +1,42 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Node dependencies and build outputs
+**/node_modules/
+**/dist/
+**/build/
+**/.cache/
+**/.parcel-cache/
+**/coverage/
+
+# Rust build outputs
+**/target/
+
+# Yew / wasm-pack artifacts
+**/*.wasm
+!YewChat/pkg/
+!YewChat/pkg/**
+
+# Temp/testing artifacts created locally
+**/.tmp*/
+**/tmp/
+*.pid
+*.seed
