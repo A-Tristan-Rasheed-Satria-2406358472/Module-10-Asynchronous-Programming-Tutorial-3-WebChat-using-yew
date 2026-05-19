@@ -22,6 +22,8 @@ npm start
 
 Aplikasi default dibuka di `http://localhost:8000`.
 
+# Bagian 3.1
+
 ## Yang Saya Coba (Play With It)
 
 1. Menjalankan server dan memastikan terminal menampilkan server aktif.
@@ -46,3 +48,25 @@ Aplikasi default dibuka di `http://localhost:8000`.
 ### Demo Chat
 
 ![Demo Chat](pics/chat-room.png)
+
+# Bagian 3.2
+
+## Add Some Creativities to the Web Client
+
+Pada bagian ini saya menambahkan beberapa elemen ke YewChat.
+
+1. Memperbarui tampilan landing page yewchat.
+2. Menambahkan halaman tambahan (Inspiration Wall) sebagai another page dari aplikasi.
+3. Memperbarui tampilan chat room dan mencoba kirim pesan berbentuk URL GIF agar bisa ditampilkan di area chat.
+
+### Landing Page After
+
+![Landing After](pics/landing-after.png)
+
+### Another Page (Inspiration Wall)
+
+![Another Page](pics/another-page.png)
+
+### Chat Room After
+
+![Chat Room After](pics/chat-room-after.png)
